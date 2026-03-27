@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PikiShield — Mutual Aid Cover for Boda Boda Riders</title>
+<meta name="description" content="PikiShield provides mutual aid cover for Kenya's boda boda riders. Bail, income and funeral protection from KES 20/day. Claims paid via M-Pesa."/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(155deg, #030B17 0%, #071E3D 45%, #043D28 80%, #052B1C 100%);
+  display: flex; align-items: center;
+  padding: 120px 6% 80px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 50% at 15% 80%, rgba(0,200,150,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 40% at 85% 15%, rgba(0,200,150,.06) 0%, transparent 60%);
+}
+.hero-inner { max-width: 1180px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,200,150,.15); border: 1px solid rgba(0,200,150,.3); color: var(--green); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(38px, 5.5vw, 64px); font-weight: 800; color: white; line-height: 1.08; margin-bottom: 22px; letter-spacing: -1.5px; }
+.hero h1 span { color: var(--green); }
+.hero-sub { font-size: 17px; color: rgba(255,255,255,.55); line-height: 1.75; margin-bottom: 36px; max-width: 460px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+.hero-stats { display: flex; gap: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.08); }
+.hero-stat-val { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: white; line-height: 1; }
+.hero-stat-val span { color: var(--green); }
+.hero-stat-label { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 4px; }
+
+/* Hero card */
+.hero-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(20px); border-radius: 20px; padding: 32px; }
+.hero-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.hero-card-icon { width: 46px; height: 46px; background: var(--green); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.hero-card-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: white; }
+.hero-card-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 2px; }
+.cover-row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.cover-row:last-of-type { border-bottom: none; }
+.cover-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; box-shadow: 0 0 8px rgba(0,200,150,.6); }
+.cover-name { flex: 1; font-size: 14px; color: rgba(255,255,255,.8); font-weight: 500; }
+.cover-limit { font-size: 13px; color: var(--green); font-weight: 700; }
+.hero-price { margin-top: 20px; background: rgba(0,200,150,.12); border: 1px solid rgba(0,200,150,.25); border-radius: 10px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+.hero-price-label { font-size: 13px; color: rgba(255,255,255,.5); }
+.hero-price-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--green); }
+
+/* ── PARTNERS / TRUST BAR ── */
+.trust-bar { background: var(--bg); padding: 28px 6%; border-bottom: 1px solid var(--border); }
+.trust-bar-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.trust-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; }
+.trust-badges { display: flex; gap: 16px; flex-wrap: wrap; }
+.trust-badge { background: white; border: 1.5px solid var(--border); border-radius: 8px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: var(--muted); }
+
+/* ── HOW IT WORKS ── */
+.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+.how-card { background: white; border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 32px 28px; transition: all .25s; position: relative; overflow: hidden; }
+.how-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--green-dark)); border-radius: var(--r-lg) var(--r-lg) 0 0; }
+.how-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.07); transform: translateY(-3px); }
+.how-num { width: 44px; height: 44px; background: var(--navy); color: var(--green); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 20px; }
+.how-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+.how-card p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+/* ── COVER TYPES ── */
+.covers-section { background: var(--bg); }
+.covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+.cover-card { border-radius: var(--r-lg); padding: 36px 30px; transition: transform .25s, box-shadow .25s; }
+.cover-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.1); }
+.cover-card.bail { background: linear-gradient(140deg, #EEF2FF 0%, #E0E7FF 100%); border: 1.5px solid #C7D2FE; }
+.cover-card.income { background: linear-gradient(140deg, #F0FDF4 0%, #DCFCE7 100%); border: 1.5px solid #BBF7D0; }
+.cover-card.funeral { background: linear-gradient(140deg, #FFF7ED 0%, #FFEDD5 100%); border: 1.5px solid #FED7AA; }
+.cover-icon { font-size: 38px; margin-bottom: 18px; }
+.cover-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+.bail h3 { color: #3730A3; }
+.income h3 { color: #15803D; }
+.funeral h3 { color: #C2410C; }
+.cover-card p { font-size: 14px; line-height: 1.75; color: #334155; margin-bottom: 22px; }
+.cover-pill { display: inline-block; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; }
+.bail .cover-pill { background: #C7D2FE; color: #3730A3; }
+.income .cover-pill { background: #BBF7D0; color: #15803D; }
+.funeral .cover-pill { background: #FED7AA; color: #C2410C; }
+
+/* ── CTA BAND ── */
+.cta-band { background: linear-gradient(135deg, var(--navy) 0%, #043D28 100%); padding: 72px 6%; text-align: center; position: relative; overflow: hidden; }
+.cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,200,150,.08) 0%, transparent 70%); }
+.cta-band h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: white; margin-bottom: 16px; position: relative; }
+.cta-band p { font-size: 16px; color: rgba(255,255,255,.5); margin-bottom: 36px; position: relative; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-card { display: none; }
+  .how-grid, .covers-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 100px 5% 60px; }
+  .hero-actions { flex-direction: column; }
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏍️</div>
+    <span class="nav-logo-text">PikiShield</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="impact.html">Our Impact</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="https://pikishield-eta.vercel.app" class="nav-cta" target="_blank">Get Covered</a>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="impact.html">Our Impact</a>
+  <a href="careers.html">Careers</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://pikishield-eta.vercel.app" target="_blank" style="color:var(--green);font-weight:700;">Get Covered →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🛡️ Kenya's Boda Boda Mutual Aid Platform</div>
+      <h1>Ride with<br/><span>confidence.</span><br/>We've got you.</h1>
+      <p class="hero-sub">From KES 20/day — bail cover, income protection, and funeral aid for Kenya's boda boda riders. No paperwork. Claims paid via M-Pesa.</p>
+      <div class="hero-actions">
+        <a href="https://pikishield-eta.vercel.app/register" class="btn-primary" target="_blank">Start Cover Today →</a>
+        <a href="about.html" class="btn-outline">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val"><span>KES</span> 20</div>
+          <div class="hero-stat-label">Per day minimum</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">24<span>h</span></div>
+          <div class="hero-stat-label">Claims response</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">47</div>
+          <div class="hero-stat-label">Counties covered</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div class="hero-card-icon">🛡️</div>
+          <div>
+            <div class="hero-card-title">Your Mutual Aid Cover</div>
+            <div class="hero-card-sub">Active protection — all 47 counties</div>
+          </div>
+        </div>
+        <div class="cover-row">
+          <div class="cover-dot"></div>
+          <span class="cover-name">Bail Aid</span>
+          <span class="cover-limit">Up to KES 20,000</span>
+        </div>
+        <div class="cover-row">
+          <div class="cover-dot"></div>
+          <span class="cover-name">Income Stipend</span>
+          <span class="cover-limit">Up to KES 15,000</span>
+        </div>
+        <div class="cover-row">
+          <div class="cover-dot"></div>
+          <span class="cover-name">Funeral Aid</span>
+          <span class="cover-limit">Up to KES 200,000</span>
+        </div>
+        <div class="hero-price">
+          <span class="hero-price-label">Daily contribution from</span>
+          <span class="hero-price-val">KES 20/day</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-label">Trusted by</span>
+    <div class="trust-badges">
+      <span class="trust-badge">🏍️ Boda Boda Riders</span>
+      <span class="trust-badge">🤝 Field Agents</span>
+      <span class="trust-badge">📍 All 47 Counties</span>
+      <span class="trust-badge">📱 M-Pesa Payments</span>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-badge">Simple Process</div>
+    <h2 class="section-title">Get covered in minutes</h2>
+    <p class="section-sub">No agents required. No offices to visit. Register on your phone and start your cover today — anywhere in Kenya.</p>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <div class="how-num">1</div>
+        <h3>Register Online</h3>
+        <p>Create your account with your phone number and national ID. Takes under 5 minutes from any smartphone, anywhere in Kenya's 47 counties.</p>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-num">2</div>
+        <h3>Choose Your Cover</h3>
+        <p>Select bail aid, income stipend, or funeral cover — or combine them into one affordable daily contribution paid via M-Pesa.</p>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-num">3</div>
+        <h3>Claim When You Need</h3>
+        <p>Submit a claim through the app with supporting documents. Approved aid is paid directly to your M-Pesa within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVER TYPES -->
+<section class="section covers-section">
+  <div class="section-inner">
+    <div class="section-badge">Our Cover</div>
+    <h2 class="section-title">Three covers. One platform.</h2>
+    <p class="section-sub">Designed for the real risks boda boda riders face every day on Kenya's roads.</p>
+    <div class="covers-grid">
+      <div class="cover-card bail reveal">
+        <div class="cover-icon">⚖️</div>
+        <h3>Bail Aid</h3>
+        <p>Get bailed out fast when you're arrested or held at a traffic stop. We pay your bail so you're back on the road the same day.</p>
+        <span class="cover-pill">Up to KES 20,000</span>
+      </div>
+      <div class="cover-card income reveal">
+        <div class="cover-icon">🩺</div>
+        <h3>Income Stipend</h3>
+        <p>If injury keeps you off the road, we cover your lost income while you recover. Keep your family supported even when you can't ride.</p>
+        <span class="cover-pill">Up to KES 15,000</span>
+      </div>
+      <div class="cover-card funeral reveal">
+        <div class="cover-icon">🕊️</div>
+        <h3>Funeral Aid</h3>
+        <p>Protect your family from the financial burden of funeral costs. Cover extends to named dependents under your policy.</p>
+        <span class="cover-pill">Up to KES 200,000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Start your cover today</h2>
+  <p>Join thousands of riders across Kenya who ride with confidence every day.</p>
+  <div class="cta-actions">
+    <a href="https://pikishield-eta.vercel.app/register" class="btn-primary" target="_blank">Get Covered — From KES 20/day</a>
+    <a href="contact.html" class="btn-outline">Talk to Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">🏍️</div>
+          <span class="nav-logo-text">PikiShield</span>
+        </a>
+        <p class="footer-brand-desc">Mutual aid cover for Kenya's boda boda riders. From KES 20/day — bail, income and funeral aid paid via M-Pesa across all 47 counties.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Cover</h4>
+        <a href="index.html#cover">Bail Aid</a>
+        <a href="index.html#cover">Income Stipend</a>
+        <a href="index.html#cover">Funeral Aid</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="impact.html">Our Impact</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="https://pikishield-eta.vercel.app" target="_blank">Login</a>
+        <a href="https://pikishield-eta.vercel.app/register" target="_blank">Register</a>
+        <a href="contact.html">Become an Agent</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 PikiShield. All rights reserved.</p>
+      <p>Built for Kenya's boda boda community</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
