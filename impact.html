@@ -13,11 +13,11 @@
 .page-hero p { font-size: 17px; color: rgba(255,255,255,.5); max-width: 560px; line-height: 1.75; }
 
 /* Stats band */
-.stats-band { background: var(--navy); padding: 56px 6%; }
-.stats-band-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-.impact-stat { text-align: center; padding: 28px 20px; border: 1px solid rgba(255,255,255,.08); border-radius: var(--r-lg); }
-.impact-stat-val { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 8px; }
-.impact-stat-label { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.5; }
+.stats-band { background: var(--navy); padding: 56px 6%; overflow: hidden; }
+.stats-band-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.impact-stat { text-align: center; padding: 24px 16px; border: 1px solid rgba(255,255,255,.08); border-radius: var(--r-lg); min-width: 0; }
+.impact-stat-val { font-family: 'Syne', sans-serif; font-size: clamp(24px, 4vw, 40px); font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 8px; word-break: break-word; }
+.impact-stat-label { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.5; }
 
 /* Testimonials */
 .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
@@ -42,7 +42,8 @@
 .county-pill:hover { border-color: var(--green); color: var(--green-deep); background: var(--green-light); }
 
 @media (max-width: 960px) {
-  .stats-band-inner { grid-template-columns: repeat(2, 1fr); }
+  .stats-band-inner { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .impact-stat { padding: 16px 10px; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .counties-grid { grid-template-columns: repeat(4, 1fr); }
 }
